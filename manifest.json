@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "dfrost.keyboard-layout",
+  "name": "Keyboard Layout+",
+  "version": "1.0.0",
+  "author": "dfrost",
+  "description": "Current keyboard layout and input language, with per-window layout memory",
+  "kinds": [
+    "bar-widget",
+    "service"
+  ],
+  "entryPoints": {
+    "barWidget": "KeyboardLayout.qml",
+    "service": "Service.qml"
+  },
+  "barWidget": {
+    "displayName": "Keyboard Layout+",
+    "description": "Current keyboard layout and input language, with per-window layout memory",
+    "category": "Compositor",
+    "defaultSection": "right",
+    "allowMultiple": false
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.keyboard-layout"
+  }
+}

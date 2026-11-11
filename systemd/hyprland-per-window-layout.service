@@ -1,0 +1,15 @@
+[Unit]
+Description=Hyprland per-window keyboard layout memory
+After=graphical-session.target
+PartOf=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+ConditionPathExists=/usr/bin/hyprland-per-window-layout
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hyprland-per-window-layout
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target
