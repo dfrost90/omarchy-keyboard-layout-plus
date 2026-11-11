@@ -1,3 +1,5 @@
+![Keyboard Layout+ preview](preview.png)
+
 # Keyboard Layout+
 
 A local clone of `omarchy.keyboard-layout` that adds per-window keyboard layout
