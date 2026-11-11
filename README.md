@@ -5,7 +5,10 @@ memory through the installed `hyprland-per-window-layout` utility.
 
 ## Dependency
 
-- `hyprland-per-window-layout` (installed at `/usr/bin/hyprland-per-window-layout`)
+- `hyprland-per-window-layout` (installed at `/usr/bin/hyprland-per-window-layout`).
+  This is an external runtime dependency and is licensed under the GPL; see
+  https://github.com/coffebar/hyprland-per-window-layout. This plugin does not
+  bundle or modify it, and remains MIT-licensed for its own code.
 
 ## Installation
 
