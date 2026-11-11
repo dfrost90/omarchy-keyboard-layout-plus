@@ -22,5 +22,6 @@
   },
   "omarchy": {
     "clonedFrom": "omarchy.keyboard-layout"
-  }
+  },
+  "license": "MIT"
 }
