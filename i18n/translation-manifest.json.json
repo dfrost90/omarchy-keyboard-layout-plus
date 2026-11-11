@@ -1,9 +1,0 @@
-{
-  "memory.on": "Memory: on",
-  "memory.off": "Memory: off",
-  "memory.unavailable": "Memory: unavailable",
-  "memory.error": "Memory: error",
-  "tooltip.layout": "Layout: %1",
-  "tooltip.left": "Left click: cycle layout",
-  "tooltip.right": "Right click: toggle memory"
-}
