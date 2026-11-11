@@ -53,7 +53,7 @@ memory through the installed `hyprland-per-window-layout` utility.
 4. Validate:
 
    ```bash
-   omarchy plugin validate ~/.config/omarchy/plugins/dfrost.keyboard-layout
+   omarchy plugin validate ~/.config/omarchy/plugins/io.github.dfrost90.keyboard-layout-plus
    ```
 
 ## Usage
@@ -79,7 +79,7 @@ systemctl --user daemon-reload
 
 ```bash
 systemctl --user disable --now hyprland-per-window-layout.service
-omarchy plugin disable dfrost.keyboard-layout
+omarchy plugin disable io.github.dfrost90.keyboard-layout-plus
 omarchy plugin enable omarchy.keyboard-layout
 # re-add to ~/.config/hypr/autostart.lua:
 # o.launch_on_start("hyprland-per-window-layout")
