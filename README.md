@@ -53,7 +53,7 @@ memory through the installed `hyprland-per-window-layout` utility.
 4. Validate:
 
    ```bash
-   omarchy plugin validate ~/.config/omarchy/plugins/io.github.dfrost90.keyboard-layout-plus
+   omarchy plugin validate ~/.config/omarchy/plugins/omarchy-keyboard-layout-plus
    ```
 
 ## Usage
