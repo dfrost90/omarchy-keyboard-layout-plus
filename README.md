@@ -69,6 +69,13 @@ memory through the installed `hyprland-per-window-layout` utility.
 Stopping the utility clears its in-memory window choices and returns the seat
 to ordinary global layout switching.
 
+Layout switching accepts only keyboard names starting with an ASCII letter or
+digit and containing ASCII letters, digits, `_`, or `-`. Special Hyprland
+selectors (`all`, `main`, `active`, `current`) are excluded. Other names are
+ignored so device names cannot become IPC batch or Lua command syntax.
+Hyprland 0.57.2 does not expose keyboard permission status in `hyprctl -j devices`;
+this filter validates names, not keyboard authorization.
+
 ## Removal
 
 ```bash

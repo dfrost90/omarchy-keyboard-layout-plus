@@ -50,7 +50,8 @@ BarWidget {
   }
 
   function typedKeyboards(keyboards) {
-    return keyboards.filter(k => KeyboardLayoutModel.isTypedKeyboard(k.name))
+    return keyboards.filter(k => KeyboardLayoutModel.isSafeKeyboardName(k.name)
+      && KeyboardLayoutModel.isTypedKeyboard(k.name))
   }
 
   function selectKeyboard(typed) {
@@ -60,8 +61,9 @@ BarWidget {
   function cycleLayout() {
     if (!root.bar || root.layoutCount < 2 || root.syncNames.length === 0) return
     const next = (root.layoutIndex + 1) % root.layoutCount
-    root.bar.run(root.syncNames.map(name =>
-      "hyprctl switchxkblayout " + Util.shellQuote(name) + " " + next).join("; "))
+    const command = KeyboardLayoutModel.layoutSwitchCommand(root.syncNames, next)
+    if (!command) return
+    root.bar.run(command)
     refreshTimer.restart()
   }
 
@@ -166,7 +168,7 @@ BarWidget {
         root.layoutCount = kb.layout === undefined ? 0 : String(kb.layout).split(",").length
         root.syncNames = listed.filter(k => String(k.layout) === String(kb.layout))
                                .map(k => String(k.name || ""))
-                               .filter(name => name !== "")
+                               .filter(KeyboardLayoutModel.isSafeKeyboardName)
         root.layoutFull = kb.active_keymap
       }
     }

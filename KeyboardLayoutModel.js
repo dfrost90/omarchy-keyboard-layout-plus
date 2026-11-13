@@ -1,5 +1,5 @@
 // Label math for the keyboard layout widget, kept Qt-free so it can be unit
-// tested under node (test/shell.d/keyboard-layout-test.sh).
+// tested under node (tests/keyboard-layout-security.test.js).
 
 // xkbcli list prints YAML, and every layout and variant block pairs a brief with
 // the description hyprctl reports as the active keymap:
@@ -89,6 +89,21 @@ function isTypedKeyboard(name) {
   return !UNTYPED_KEYBOARDS.test(String(name || ""))
 }
 
+// Shell quoting cannot escape Hyprland's IPC batch/Lua parsers. Accept only
+// literal device identifiers, never command syntax or broad keyboard selectors.
+function isSafeKeyboardName(name) {
+  return typeof name === "string" && /^[a-zA-Z0-9]/.test(name)
+    && !/[^a-zA-Z0-9_-]/.test(name)
+    && ["all", "main", "active", "current"].indexOf(name.toLowerCase()) === -1
+}
+
+function layoutSwitchCommand(names, index) {
+  if (typeof index !== "number" || !isFinite(index) || index < 0 || Math.floor(index) !== index) return ""
+  return names.filter(isSafeKeyboardName).map(function (name) {
+    return "hyprctl switchxkblayout " + name + " " + index
+  }).join("; ")
+}
+
 // Every keyboard on the seat carries the same layout list unless one was given
 // its own, but only the one being typed on advances through it. So the
 // furthest-advanced is the one worth reading, and a switch names the keyboard it
@@ -144,6 +159,8 @@ if (typeof module !== "undefined") {
   module.exports = {
     eventKeyboardName: eventKeyboardName,
     isTypedKeyboard: isTypedKeyboard,
+    isSafeKeyboardName: isSafeKeyboardName,
+    layoutSwitchCommand: layoutSwitchCommand,
     layoutBriefs: layoutBriefs,
     selectKeyboard: selectKeyboard,
     shortLabel: shortLabel,
